@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photography | Michael Jeffery Sych</title>
+  <meta name="description" content="Photography by Michael Jeffery Sych: portraits, urban moods, reenactments and landscapes.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
+        Michael Sych
+      </a>
+      <nav aria-label="Primary">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="photography.html" aria-current="page">Photography</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="extrainfo.html">A Little Extra</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Photography</h1>
+        <p>Exploring light, texture, and story through the lens. Shot on a Canon R7.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="photo-intro prose">
+          <p>
+            My photography focuses on capturing real moments with cinematic emotion, whether it’s a quiet fog-covered
+            street, a candid expression at a night festival, or the dignity of historical reenactments.
+          </p>
+          <p class="muted">
+            I blend documentary and creative styles: expressive portraits, urban moods, historical storytelling, and
+            peaceful landscapes. Each shot aims to preserve a feeling (stillness, nostalgia, celebration, or
+            resilience) and invites you to see ordinary moments through a more cinematic lens. Select any photo to
+            see it larger.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <figure class="panel photo span-7">
+            <button type="button" aria-label="Enlarge photo: Foggy mornings">
+              <img src="img/foggypic1.avif" alt="A suburban street disappearing into thick morning fog" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Foggy mornings</strong>
+              <em>Cinematic suburban landscape</em>
+              Soft morning fog turns a familiar street surreal, muting detail and pushing depth into silhouette. Shot in low light to emphasize atmosphere and quiet tension.
+            </figcaption>
+          </figure>
+
+          <figure class="panel photo span-5 tall">
+            <button type="button" aria-label="Enlarge photo: Timeless smile">
+              <img src="img/portraitpic2.avif" alt="Black and white portrait of a smiling person in period costume" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Timeless smile</strong>
+              <em>Portrait / documentary</em>
+              A candid portrait exploring expression and character through period costume and soft monochrome tones. Natural light and gentle contrast highlight texture and emotion.
+            </figcaption>
+          </figure>
+
+          <figure class="panel photo span-5 tall">
+            <button type="button" aria-label="Enlarge photo: Suburban sunset glow">
+              <img src="img/sunsetpic3.avif" alt="Vivid sunset over a parking lot with silhouetted light poles" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Suburban sunset glow</strong>
+              <em>Landscape / urban</em>
+              A vivid sunset transforms an ordinary parking lot into a dramatic silhouette scene. The bold gradient sky shows the beauty that emerges in everyday spaces.
+            </figcaption>
+          </figure>
+
+          <figure class="panel photo span-7">
+            <button type="button" aria-label="Enlarge photo: Modern knight">
+              <img src="img/knightpic4.avif" alt="A medieval reenactor in armour in a modern setting" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Modern knight</strong>
+              <em>Event / portrait</em>
+              A candid moment from a medieval reenactment. Natural light and shallow depth of field highlight the striking contrast between tradition and modern life.
+            </figcaption>
+          </figure>
+
+          <figure class="panel photo span-6">
+            <button type="button" aria-label="Enlarge photo: Winter silhouette">
+              <img src="img/treepic5.avif" alt="A bare tree silhouetted against a winter sky" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Winter silhouette</strong>
+              <em>Nature / landscape</em>
+              A lone tree against a crisp winter sky, its bare branches forming an intricate pattern. Strong contrast and cool tones emphasize seasonal stillness.
+            </figcaption>
+          </figure>
+
+          <figure class="panel photo span-6">
+            <button type="button" aria-label="Enlarge photo: Wartime rest and care">
+              <img src="img/wartimepic6.avif" alt="Black and white wartime reenactment scene" loading="lazy">
+            </button>
+            <figcaption>
+              <strong>Wartime rest and care</strong>
+              <em>Documentary</em>
+              A historical reenactment captured in monochrome, emphasizing period detail and authentic costume while honouring the subjects’ roles.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+    <button class="btn btn-ghost close" type="button">Close</button>
+    <div>
+      <img src="" alt="">
+      <p></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Michael Jeffery Sych. Designed and developed by Michael Sych.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/michael-sych-710636238/">LinkedIn</a>
+        <a href="https://github.com/Pestis-sys">GitHub</a>
+        <a href="mailto:tommaco123@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

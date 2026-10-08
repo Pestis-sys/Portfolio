@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Michael Jeffery Sych</title>
+  <meta name="description" content="Contact Michael Jeffery Sych about web development work and collaborations.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
+        Michael Sych
+      </a>
+      <nav aria-label="Primary">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="photography.html">Photography</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+          <li><a href="extrainfo.html">A Little Extra</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Contact</h1>
+        <p>Interested in collaborating or have a role in mind? Let’s talk.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div class="contact-aside">
+          <p>Send a message with the form and it comes straight to my inbox.</p>
+          <p class="muted">Prefer something else? Find me here:</p>
+          <ul>
+            <li><a href="mailto:tommaco123@gmail.com">tommaco123@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/michael-sych-710636238/">LinkedIn</a></li>
+            <li><a href="https://github.com/Pestis-sys">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div class="panel pad">
+          <form id="contactForm" name="contact" method="POST" action="send.php">
+            <!-- Honeypot: hidden from people, bots fill it in -->
+            <p class="hp">
+              <label>Don’t fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </p>
+
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project or question" required></textarea>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" type="submit">Send message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Michael Jeffery Sych. Designed and developed by Michael Sych.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/michael-sych-710636238/">LinkedIn</a>
+        <a href="https://github.com/Pestis-sys">GitHub</a>
+        <a href="mailto:tommaco123@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
