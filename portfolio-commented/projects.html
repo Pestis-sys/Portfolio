@@ -1,0 +1,291 @@
+<!doctype html>
+<!-- HTML reference: https://developer.mozilla.org/en-US/docs/Web/HTML -->
+<!-- lang="en" tells browsers and screen readers the page language.
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- Makes the page fit phone screens instead of showing a zoomed-out desktop page.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Michael Jeffery Sych</title>
+  <!-- The description is the text Google shows under the page title in search results.
+       https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML -->
+  <meta name="description" content="PHP, JavaScript, WordPress, marketing and design projects by Michael Jeffery Sych.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Google Fonts: preconnect opens the connection early so fonts load faster.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect
+       Fonts: Chakra Petch (headings), IBM Plex Sans (body), IBM Plex Mono (terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Skip link: hidden until a keyboard user presses Tab, then jumps past the menu.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#skip_links -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
+        Michael Sych
+      </a>
+      <!-- <nav> marks the main navigation for screen readers.
+           The Menu button only shows on phones; script.js opens/closes the list
+           and updates aria-expanded.
+           https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+           https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded -->
+      <nav aria-label="Primary">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">About</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="photography.html">Photography</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="extrainfo.html">A Little Extra</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>Projects</h1>
+        <p>PHP apps, WordPress builds, marketing and design work from my time in DMIT at NAIT.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- Filter buttons: each has data-filter="…" matching the projects' data-cat="…".
+             aria-pressed shows which one is active. Logic: script.js "Project filters".
+             https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*
+             https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed -->
+        <div class="filters" role="group" aria-label="Filter projects"><button type="button" class="filter" data-filter="all" aria-pressed="true">All</button><button type="button" class="filter" data-filter="code" aria-pressed="false">PHP and JavaScript</button><button type="button" class="filter" data-filter="wordpress" aria-pressed="false">WordPress</button><button type="button" class="filter" data-filter="marketing" aria-pressed="false">Marketing</button><button type="button" class="filter" data-filter="design" aria-pressed="false">Design</button></div>
+        <p class="filter-count muted" id="filterCount" aria-live="polite"></p>
+
+        <article class="panel project" data-cat="code">
+          <div class="project-visual">
+            <div class="code-window" aria-hidden="true">
+              <div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span>includes/_functions.php</span></div>
+              <pre><code>function resizeImage($file, $folder, $newwidth) {
+  list($width, $height) = getimagesize($file);
+  $newheight = ($height / $width) * $newwidth;
+
+  $thumb  = imagecreatetruecolor($newwidth, $newheight);
+  $source = imagecreatefromjpeg($file);
+  imagecopyresampled($thumb, $source, 0, 0, 0, 0,
+    $newwidth, $newheight, $width, $height);
+  ...
+}</code></pre>
+            </div>
+          </div>
+          <div>
+            <ul class="chips"><li>PHP</li><li>MySQL</li><li>Auth</li></ul>
+            <h2>Community Gallery</h2>
+            <!-- <dl> = description list: <dt> is the label, <dd> the value.
+                 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl -->
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A multi-user photo gallery where members sign up, log in, upload their photos and rate each other’s work.</dd>
+              <dt>Built with</dt>
+              <dd>PHP, MySQL, the GD image library, HTML and CSS</dd>
+              <dt>Highlights</dt>
+              <dd>User registration and login with hashed passwords. An admin area to add, edit and delete photos. Uploads are automatically resized into four sizes, including square-cropped thumbnails. Author pages and a ratings system pull everything together with SQL queries.</dd>
+              <dt>Takeaway</dt>
+              <dd>How the pieces of a real web app connect: forms, sessions, file uploads, and a database behind it all.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="wordpress">
+          <div class="project-visual">
+            <div class="code-window" aria-hidden="true">
+              <div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span>functions.php</span></div>
+              <pre><code>function media_vault_register_post_types() {
+  register_post_type( &#x27;book&#x27;, array(
+    &#x27;labels&#x27;       =&gt; array( &#x27;name&#x27; =&gt; &#x27;Books&#x27; ),
+    &#x27;public&#x27;       =&gt; true,
+    &#x27;has_archive&#x27;  =&gt; true,
+    &#x27;menu_icon&#x27;    =&gt; &#x27;dashicons-book&#x27;,
+    &#x27;supports&#x27;     =&gt; array( &#x27;title&#x27;, &#x27;editor&#x27;, &#x27;thumbnail&#x27; ),
+    &#x27;show_in_rest&#x27; =&gt; true,
+  ) );
+  // ...plus &#x27;movie&#x27; and &#x27;game&#x27;
+}
+add_action( &#x27;init&#x27;, &#x27;media_vault_register_post_types&#x27; );</code></pre>
+            </div>
+          </div>
+          <div>
+            <ul class="chips"><li>WordPress</li><li>PHP</li><li>ACF</li></ul>
+            <h2>Media Vault</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A WordPress site for cataloguing a personal collection of books, movies and games.</dd>
+              <dt>Built with</dt>
+              <dd>A custom child theme, PHP, Advanced Custom Fields, WP_Query</dd>
+              <dt>Highlights</dt>
+              <dd>Registered three custom post types, each with its own fields (author, page count, rating, multiplayer, storage location, price and more). Wrote custom archive and single templates for every type, and a front page that pulls the latest of each with WP_Query.</dd>
+              <dt>Takeaway</dt>
+              <dd>Turning WordPress from a blog into a structured content system.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="wordpress">
+          <div class="project-visual">
+            <div class="palette-thumb" aria-hidden="true">
+              <div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span>theme.json: colour palette</span></div>
+              <ul><li style="--sw:#FED42A"><span>Yellow</span><code>#FED42A</code></li><li style="--sw:#CF6227"><span>Burnt orange</span><code>#CF6227</code></li><li style="--sw:#F2E5D5"><span>Cream</span><code>#F2E5D5</code></li><li style="--sw:#5AA095"><span>Seafoam green</span><code>#5AA095</code></li><li style="--sw:#202328"><span>Dark navy</span><code>#202328</code></li><li style="--sw:#B91C1C"><span>Required red</span><code>#B91C1C</code></li></ul>
+              <p>Source Serif Pro + Source Sans Pro</p>
+            </div>
+          </div>
+          <div>
+            <ul class="chips"><li>WordPress</li><li>Block theme</li><li>theme.json</li></ul>
+            <h2>Globetrotting Friends</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A travel blog and tour site running on a block theme I built from scratch.</dd>
+              <dt>Built with</dt>
+              <dd>WordPress full site editing, theme.json, HTML block templates</dd>
+              <dt>Highlights</dt>
+              <dd>Defined the whole design system in theme.json: colour palette, font pairing, layout widths and spacing. Built custom templates for the home page, single posts, archives, and separate Blog and Tours categories, with reusable header, footer and banner parts.</dd>
+              <dt>Takeaway</dt>
+              <dd>How modern WordPress themes work, and how a design system becomes code.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="code">
+          <div class="project-visual">
+            <div class="code-window" aria-hidden="true">
+              <div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span>page_ajax_js.html</span></div>
+              <pre><code>function sndReq(by, value) {
+  http.open(&#x27;get&#x27;, &#x27;display.php?display_by=&#x27;
+    + encodeURIComponent(by)
+    + &#x27;&amp;display_value=&#x27; + encodeURIComponent(value));
+  http.onreadystatechange = handleResponse;
+  http.send(null);
+}
+
+function handleResponse() {
+  if (http.readyState == 4) {
+    document.getElementById(&#x27;sideDisplay&#x27;)
+      .innerHTML = http.responseText;
+  }
+}</code></pre>
+            </div>
+          </div>
+          <div>
+            <ul class="chips"><li>JavaScript</li><li>AJAX</li><li>jQuery</li><li>PHP</li></ul>
+            <h2>AJAX CD catalogue</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A music catalogue that loads albums by genre or artist without ever reloading the page.</dd>
+              <dt>Built with</dt>
+              <dd>JavaScript, jQuery, PHP, MySQL</dd>
+              <dt>Highlights</dt>
+              <dd>Built the same page twice, once with plain JavaScript (XMLHttpRequest) and once with jQuery, to compare the two approaches. The PHP side answers each request from MySQL using prepared statements, which protects against SQL injection.</dd>
+              <dt>Takeaway</dt>
+              <dd>What actually happens between the browser and the server in an async request.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="marketing">
+          <div class="project-visual">
+            <div class="project-img"><img src="img/redbowl-search-console.webp" alt="Google Search Console chart for My Red Bowl Kitchen: 283 impressions and an average position of 2.9" loading="lazy"></div>
+          </div>
+          <div>
+            <ul class="chips"><li>SEO</li><li>Analytics</li><li>Google Ads</li><li>Social</li></ul>
+            <h2>My Red Bowl Kitchen</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A niche food site about Manhattan clam chowder, launched and marketed as a class project.</dd>
+              <dt>Built with</dt>
+              <dd>HTML, CSS, JavaScript, Google Analytics, Search Console, Google Ads, Facebook</dd>
+              <dt>Highlights</dt>
+              <dd>Wrote SEO content, set up the sitemap, robots.txt and search engine verification, ran a Google Ads campaign, and shared through Facebook. Then wrote a 90-day performance report from the real data.</dd>
+              <dt>Results</dt>
+              <dd>283 search impressions with an average position of 2.9. Visitors averaged 94 seconds of engagement, and the home page logged 875 interactions.</dd>
+              <dt>Takeaway</dt>
+              <dd>Building a site is half the job. Getting it found is the other half.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="design">
+          <div class="project-visual">
+            <div class="project-img"><img src="img/branding-foose-goose.webp" alt="Foose Goose Inc. stationery set: letterhead, envelope, folder and business cards in deep blue, light blue and yellow" loading="lazy"></div>
+          </div>
+          <div>
+            <ul class="chips"><li>Branding</li><li>Illustrator</li></ul>
+            <h2>Foose Goose Inc. brand identity</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>A complete brand identity inspired by my sister, the family’s resident “silly goose.”</dd>
+              <dt>Built with</dt>
+              <dd>Adobe Illustrator, mock-up templates</dd>
+              <dt>Highlights</dt>
+              <dd>Refined a goose sketch into a clean combination mark that scales from business card to folder. Deep blues bring trust, lighter blues openness, and bright yellow the humour. Designed the business card, letterhead, envelope and a personalized letter.</dd>
+              <dt>Takeaway</dt>
+              <dd>A playful idea can still be structured, consistent and professional.</dd>
+            </dl>
+          </div>
+        </article>
+
+        <article class="panel project" data-cat="wordpress">
+          <div class="project-visual">
+            <div class="status-thumb" aria-hidden="true">
+              <div class="code-bar"><span class="dots"><i></i><i></i><i></i></span><span>capstone: status</span></div>
+              <dl>
+                <dt>Client</dt><dd>Cheremosh Ukrainian Dance</dd>
+                <dt>Team</dt><dd>Triad Studio (4 people)</dd>
+                <dt>Stack</dt><dd>WordPress, custom build</dd>
+                <dt>Status</dt><dd class="blink">In progress</dd>
+              </dl>
+              <div class="progress"><span></span></div>
+            </div>
+          </div>
+          <div>
+            <ul class="chips"><li>Capstone</li><li>WordPress</li><li>Client</li></ul>
+            <h2>Cheremosh Ukrainian Dance (in progress)</h2>
+            <dl class="specs">
+              <dt>What</dt>
+              <dd>My DMIT capstone: a website redesign for Cheremosh Ukrainian Dance, a real Edmonton dance school.</dd>
+              <dt>Built with</dt>
+              <dd>A fresh custom WordPress build on the client’s hosting</dd>
+              <dt>My role</dt>
+              <dd>Developer on a four-person team, Triad Studio</dd>
+              <dt>Status</dt>
+              <dd>In progress, launching later this school year.</dd>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Michael Jeffery Sych. Designed and developed by Michael Sych.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/michael-sych-710636238/">LinkedIn</a>
+        <a href="https://github.com/Pestis-sys">GitHub</a>
+        <a href="mailto:tommaco123@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Loaded at the end of <body> so the HTML exists before the script looks for it.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
