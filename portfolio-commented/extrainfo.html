@@ -1,0 +1,226 @@
+<!doctype html>
+<!-- HTML reference: https://developer.mozilla.org/en-US/docs/Web/HTML -->
+<!-- lang="en" tells browsers and screen readers the page language.
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- Makes the page fit phone screens instead of showing a zoomed-out desktop page.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Little Extra | Michael Jeffery Sych</title>
+  <!-- The description is the text Google shows under the page title in search results.
+       https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML -->
+  <meta name="description" content="More about Michael Jeffery Sych: two decades in kitchens, photography, and making things.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Google Fonts: preconnect opens the connection early so fonts load faster.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect
+       Fonts: Chakra Petch (headings), IBM Plex Sans (body), IBM Plex Mono (terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Skip link: hidden until a keyboard user presses Tab, then jumps past the menu.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#skip_links -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
+        Michael Sych
+      </a>
+      <!-- <nav> marks the main navigation for screen readers.
+           The Menu button only shows on phones; script.js opens/closes the list
+           and updates aria-expanded.
+           https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+           https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded -->
+      <nav aria-label="Primary">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="photography.html">Photography</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="extrainfo.html" aria-current="page">A Little Extra</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <h1>A little extra</h1>
+        <p>Turning ideas into something you can see, feel, and maybe even smile at.</p>
+      </div>
+    </section>
+
+
+    <!-- Player profile -->
+    <section class="section">
+      <div class="container profile">
+        <div class="panel portrait">
+          <img src="img/self2.jpg" alt="Michael Jeffery Sych">
+        </div>
+        <div class="panel pad sheet">
+          <div class="sheet-head">
+            <h2>Player profile</h2>
+            <span class="online"><i></i> Online</span>
+          </div>
+          <dl>
+              <dt>Class</dt><dd>Chef → Developer</dd>
+              <dt>Base</dt><dd>Edmonton, AB</dd>
+              <dt>Years in kitchens</dt><dd>20+</dd>
+              <dt>Training</dt><dd>Red Seal chef</dd>
+              <dt>Current quest</dt><dd>DMIT, NAIT</dd>
+              <dt>Camera</dt><dd>Canon R7</dd>
+              <dt>3D printers</dt><dd>2</dd>
+              <dt>Monitors</dt><dd>Dual OLED</dd>
+              <dt>Companions</dt><dd>Cooper and Togo</dd>
+              <dt>Workspace re-orgs</dt><dd>27 and counting</dd>
+          </dl>
+          <p class="sheet-note">
+            Before I was building websites and printing custom parts, I was building plates. Cooking taught me
+            structure, flow, and leadership under pressure: how to stay calm when things heat up and how to make
+            something beautiful out of chaos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section section-tight">
+      <div class="container">
+        <h2 class="section-title">From the line to the code</h2>
+        <!-- <ol> (ordered list) because the timeline is a real sequence.
+             https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol -->
+        <ol class="timeline">
+          <li>
+            <span class="step">01</span>
+            <h3>The kitchen years</h3>
+            <p>Two decades on the line. Long services, tight timing, and learning that calm beats chaos every time.</p>
+          </li>
+          <li>
+            <span class="step">02</span>
+            <h3>Running the line</h3>
+            <p>Managed the kitchen at Sherlock Holmes on Rice Howard Way. Leading a team through the busiest services.</p>
+          </li>
+          <li>
+            <span class="step">03</span>
+            <h3>Back to school</h3>
+            <p>Started DMIT at NAIT. Swapped knives for keyboards: HTML, CSS, JavaScript, PHP, WordPress.</p>
+          </li>
+          <li>
+            <span class="step">04</span>
+            <h3>What’s next</h3>
+            <p>Web development meets digital marketing: building sites that look good, run fast, and get found.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Kitchen to code translator -->
+    <section class="section">
+      <div class="container translator">
+        <div>
+          <h2>Kitchen to code</h2>
+          <p class="muted">
+            Turns out a professional kitchen and a dev team speak the same language. Flip the switch to translate.
+          </p>
+          <div class="switch" role="group" aria-label="Translate terms">
+            <button type="button" class="switch-btn" data-mode="kitchen" aria-pressed="true">Kitchen</button>
+            <button type="button" class="switch-btn" data-mode="code" aria-pressed="false">Code</button>
+          </div>
+          <p class="pull">Whether I’m designing a layout or fine-tuning a print, I still think like a chef.</p>
+        </div>
+        <!-- Each meaning stores both versions in data-kitchen="…" and data-code="…".
+             The Kitchen/Code switch swaps them (script.js "Kitchen to code translator").
+             https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes -->
+        <ul class="panel glossary" id="glossary" aria-live="polite">
+            <li>
+              <span class="term">Mise en place</span>
+              <span class="meaning" data-code="Plan the components before writing code" data-kitchen="Everything prepped and in its place before service starts">Everything prepped and in its place before service starts</span>
+            </li>
+            <li>
+              <span class="term">The pass</span>
+              <span class="meaning" data-code="Code review" data-kitchen="Where every plate gets checked before it goes out">Where every plate gets checked before it goes out</span>
+            </li>
+            <li>
+              <span class="term">Order fired</span>
+              <span class="meaning" data-code="Function called" data-kitchen="The ticket comes in and the line starts cooking">The ticket comes in and the line starts cooking</span>
+            </li>
+            <li>
+              <span class="term">86’d</span>
+              <span class="meaning" data-code="Deprecated" data-kitchen="We’re out of it. Take it off the menu">We’re out of it. Take it off the menu</span>
+            </li>
+            <li>
+              <span class="term">In the weeds</span>
+              <span class="meaning" data-code="Merge conflict at 4:55 pm on a Friday" data-kitchen="So far behind on tickets you can’t see daylight">So far behind on tickets you can’t see daylight</span>
+            </li>
+            <li>
+              <span class="term">Clean as you go</span>
+              <span class="meaning" data-code="Refactor as you go" data-kitchen="Wipe down your station between every task">Wipe down your station between every task</span>
+            </li>
+            <li>
+              <span class="term">Family meal</span>
+              <span class="meaning" data-code="Team stand-up" data-kitchen="Staff eat together before the doors open">Staff eat together before the doors open</span>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Off the clock -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Off the clock</h2>
+        <div class="off-grid">
+          <div>
+            <h3>Behind the lens</h3>
+            <p>
+              Photography helps me slow things down. It’s how I breathe between projects, noticing how light lands on
+              a countertop or how a shadow cuts across a wall. My Canon R7 goes everywhere with me. It’s less about
+              perfection and more about presence. <a href="photography.html">See my photos</a>.
+            </p>
+          </div>
+          <div>
+            <h3>The crew</h3>
+            <p>
+              Most days end with my partner and our two dogs, Cooper and Togo. Walks, late-night movies, road trips,
+              even lazy Sundays: those are the moments that refill the tank so I can keep building with purpose.
+            </p>
+          </div>
+          <div>
+            <h3>Making things</h3>
+            <p>
+              Websites, brands, 3D prints, photos. At the end of the day I just love making things and sharing them
+              with the people, and dogs, who make life feel grounded and good.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <p>© <span id="year"></span> Michael Jeffery Sych. Designed and developed by Michael Sych.</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/michael-sych-710636238/">LinkedIn</a>
+        <a href="https://github.com/Pestis-sys">GitHub</a>
+        <a href="mailto:tommaco123@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Loaded at the end of <body> so the HTML exists before the script looks for it.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
