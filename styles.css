@@ -1,8 +1,17 @@
 /* =========================================================
    Michael Sych — portfolio
    Cyberpunk / neon theme, colours taken from the MS Tech logo
+   ---------------------------------------------------------
+   One stylesheet for every page. Sections are in page order,
+   with responsive (screen-size) rules near the bottom.
+
+   Main reference: MDN CSS docs
+   https://developer.mozilla.org/en-US/docs/Web/CSS
    ========================================================= */
 
+/* Custom properties (CSS variables): define a value once, reuse it
+   everywhere with var(--name). Change a colour here and the whole site updates.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties */
 :root {
   /* colour */
   --void: #07050e;        /* page background */
@@ -25,6 +34,9 @@
 }
 
 /* ---------- base ---------- */
+/* box-sizing: border-box makes width include padding and border,
+   so sizes behave the way you'd expect.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing */
 *,
 *::before,
 *::after {
@@ -45,7 +57,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* faint scanlines over everything */
+/* faint scanlines over everything (the old-CRT-monitor look)
+   ::after adds an extra "pseudo-element" with no HTML needed.
+   position: fixed + inset: 0 makes it cover the whole screen;
+   pointer-events: none lets clicks pass straight through it.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/::after
+   https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+   https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-linear-gradient */
 body::after {
   content: "";
   position: fixed;
@@ -69,6 +87,8 @@ a:hover {
   color: #fff;
 }
 
+/* :focus-visible shows an outline only for keyboard users, not mouse clicks.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
 :focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
@@ -83,6 +103,9 @@ h3 {
 }
 
 h2 {
+  /* clamp(min, preferred, max): fluid size that grows with the screen
+     but never goes below 2rem or above 3.25rem.
+     https://developer.mozilla.org/en-US/docs/Web/CSS/clamp */
   font-size: clamp(2rem, 4.5vw, 3.25rem);
   font-weight: 700;
 }
@@ -116,6 +139,14 @@ p {
 }
 
 /* ---------- chamfered panel (the signature shape) ---------- */
+/* clip-path: polygon() cuts the box into a shape. The six points cut off
+   the top-right and bottom-left corners (the "chamfer").
+   The linear-gradient at 225deg draws the thin cyan line along the cut corner.
+   inset box-shadow draws a 1px border that clip-path won't hide.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path
+   https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape/polygon
+   https://developer.mozilla.org/en-US/docs/Web/CSS/calc
+   https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
 .panel {
   position: relative;
   background:
@@ -168,11 +199,15 @@ p {
 }
 
 /* ---------- header ---------- */
+/* position: sticky keeps the header at the top while you scroll.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/position */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
   background: rgba(7, 5, 14, .82);
+  /* blurs whatever scrolls behind the header (frosted glass)
+     https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter */
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -224,6 +259,9 @@ p {
   color: var(--text);
 }
 
+/* Attribute selector: styles the link for the page you're on.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
+   https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current */
 .nav-links a[aria-current="page"] {
   color: var(--cyan);
   border-bottom-color: var(--cyan);
@@ -244,10 +282,16 @@ p {
 .hero {
   position: relative;
   overflow: hidden;
+  /* svh = "small viewport height": full screen height that stays correct
+     on phones when the browser toolbar shows/hides.
+     https://developer.mozilla.org/en-US/docs/Web/CSS/length#relative_length_units_based_on_viewport */
   min-height: calc(100svh - 62px);
   display: grid;
   align-items: center;
   padding: 4rem 0 9rem;
+  /* isolation: isolate keeps the z-index: -1 layers below (glow, floor)
+     inside the hero instead of sliding behind the whole page.
+     https://developer.mozilla.org/en-US/docs/Web/CSS/isolation */
   isolation: isolate;
 }
 
@@ -271,7 +315,17 @@ p {
   z-index: -1;
 }
 
-/* the neon grid floor */
+/* the neon grid floor
+   1. Two linear-gradients draw horizontal + vertical 1px lines = a grid.
+   2. transform: perspective() rotateX() tilts it back like a floor.
+   3. mask-image fades it out toward the horizon.
+   4. The @keyframes animation slides the grid down by one square
+      and loops, so it looks like you're moving forward.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective
+   https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateX
+   https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image
+   https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes
+   https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
 .grid-floor {
   position: absolute;
   left: -50%;
@@ -312,6 +366,9 @@ p {
   margin: 0 0 .75rem;
 }
 
+/* The glitch title
+   text-shadow with offset pink and cyan copies = the permanent RGB-split look.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow */
 .glitch {
   position: relative;
   font-size: clamp(3.5rem, 12vw, 9rem);
@@ -322,6 +379,14 @@ p {
   text-shadow: 3px 0 var(--pink), -3px 0 var(--cyan);
 }
 
+/* Two invisible copies of the title sit on top of it.
+   attr(data-text) pulls the text from the HTML's data-text="" attribute.
+   On page load, the glitch-a / glitch-b animations flash them visible,
+   show random horizontal slices with clip-path: inset(), and shift them
+   sideways. steps(1) makes each change instant (jerky) instead of smooth.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/attr
+   https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape/inset
+   https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function#steps */
 .glitch::before,
 .glitch::after {
   content: attr(data-text);
@@ -369,13 +434,6 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: .75rem;
-}
-
-.hero-logo {
-  width: min(100%, 340px);
-  justify-self: end;
-  border-radius: 28px;
-  box-shadow: 0 0 0 1px var(--line), 0 0 60px rgba(25, 240, 255, .25), 0 0 120px rgba(155, 61, 255, .3);
 }
 
 /* ---------- inner page heading ---------- */
@@ -440,6 +498,10 @@ p {
 
 .portrait img {
   width: 100%;
+  /* aspect-ratio locks the shape; object-fit: cover crops the photo to fill it
+     without stretching.
+     https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
+     https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit */
   aspect-ratio: 4 / 5;
   object-fit: cover;
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
@@ -483,6 +545,11 @@ p {
 
 .skill-grid {
   display: grid;
+  /* CSS Grid: two equal columns. minmax(0, 1fr) stops long words
+     from stretching a column wider than its share.
+     https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout
+     https://developer.mozilla.org/en-US/docs/Web/CSS/repeat
+     https://developer.mozilla.org/en-US/docs/Web/CSS/minmax */
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
@@ -618,12 +685,15 @@ p {
   margin-bottom: .4rem;
 }
 
+/* Media query: these rules only apply on screens 720px and wider.
+   On phones every photo is full width; on bigger screens they use
+   a 12-column grid (span-7 + span-5, or span-6 + span-6 = one row).
+   https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries
+   https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
 @media (min-width: 720px) {
-  .span-4 { grid-column: span 4; }
   .span-5 { grid-column: span 5; }
   .span-6 { grid-column: span 6; }
   .span-7 { grid-column: span 7; }
-  .span-8 { grid-column: span 8; }
 }
 
 /* lightbox */
@@ -831,6 +901,8 @@ textarea {
   overflow-y: auto;
   padding: 1rem 1.1rem;
   cursor: text;
+  /* thin, colour-matched scrollbar (Firefox + Chrome)
+     https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color */
   scrollbar-width: thin;
   scrollbar-color: var(--line) transparent;
 }
@@ -843,7 +915,6 @@ textarea {
 }
 
 .term-out .cmd { color: var(--text); }
-.term-out .cmd b { color: var(--cyan); font-weight: 500; }
 .term-out .ok { color: var(--cyan); }
 .term-out .warn { color: var(--pink); }
 .term-out .dim { color: var(--muted); }
@@ -871,6 +942,8 @@ textarea {
   background: none;
   color: var(--text);
   font: inherit;
+  /* colour of the blinking text cursor
+     https://developer.mozilla.org/en-US/docs/Web/CSS/caret-color */
   caret-color: var(--cyan);
   box-shadow: none;
 }
@@ -880,6 +953,8 @@ textarea {
   box-shadow: none;
 }
 
+/* :focus-within = "when anything inside this is focused" (the input).
+   https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within */
 .terminal:focus-within {
   box-shadow: inset 0 0 0 1px rgba(25, 240, 255, .55), 0 0 0 1px rgba(25, 240, 255, .25);
 }
@@ -1013,6 +1088,9 @@ textarea {
   font-size: .95rem;
 }
 
+/* The filter script sets card.hidden = true; this makes sure it really
+   disappears even though .project sets its own display: grid.
+   https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden */
 .project[hidden] {
   display: none;
 }
@@ -1078,6 +1156,8 @@ textarea {
 
 .sheet dl {
   display: grid;
+  /* pair each label with its value: label | value | label | value */
+  grid-template-columns: max-content 1fr max-content 1fr;
   gap: 1px;
   margin: 0;
   background: var(--line);
@@ -1107,17 +1187,15 @@ textarea {
   color: var(--text);
 }
 
-/* pair each label with its value on one row */
-.sheet dl {
-  grid-template-columns: max-content 1fr max-content 1fr;
-}
-
 .sheet-note {
   margin: 1.5rem 0 0;
   color: var(--muted);
 }
 
 /* ---------- a little extra: timeline ---------- */
+/* The glowing line is a ::before pseudo-element stretched across the list;
+   the numbered squares sit on top of it. On phones it turns vertical
+   (see the max-width: 900px rule further down). */
 .timeline {
   position: relative;
   display: grid;
@@ -1175,6 +1253,9 @@ textarea {
 }
 
 /* ---------- a little extra: kitchen to code ---------- */
+/* The switch buttons use aria-pressed (set by script.js) for both
+   accessibility and styling. The .flip animation plays each time a
+   meaning changes. */
 .translator {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
@@ -1328,13 +1409,6 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .hero-logo {
-    justify-self: start;
-    width: 120px;
-    border-radius: 16px;
-    order: -1;
-  }
-
   .portrait {
     position: static;
     max-width: 420px;
@@ -1377,6 +1451,9 @@ textarea {
 }
 
 /* ---------- reduced motion ---------- */
+/* If someone turns on "Reduce motion" in their system settings,
+   switch off all animations and transitions.
+   https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

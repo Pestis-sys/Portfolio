@@ -1,13 +1,23 @@
 <!doctype html>
+<!-- HTML reference: https://developer.mozilla.org/en-US/docs/Web/HTML -->
+<!-- lang="en" tells browsers and screen readers the page language.
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang -->
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <!-- Makes the page fit phone screens instead of showing a zoomed-out desktop page.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Photography | Michael Jeffery Sych</title>
+  <!-- The description is the text Google shows under the page title in search results.
+       https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML -->
   <meta name="description" content="Photography by Michael Jeffery Sych: portraits, urban moods, reenactments and landscapes.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Google Fonts: preconnect opens the connection early so fonts load faster.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect
+       Fonts: Chakra Petch (headings), IBM Plex Sans (body), IBM Plex Mono (terminal) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,6 +25,8 @@
 </head>
 
 <body>
+  <!-- Skip link: hidden until a keyboard user presses Tab, then jumps past the menu.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#skip_links -->
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -23,6 +35,11 @@
         <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
         Michael Sych
       </a>
+      <!-- <nav> marks the main navigation for screen readers.
+           The Menu button only shows on phones; script.js opens/closes the list
+           and updates aria-expanded.
+           https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+           https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded -->
       <nav aria-label="Primary">
         <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
         <ul class="nav-links" id="navLinks">
@@ -59,6 +76,11 @@
           </p>
         </div>
 
+        <!-- Each photo is a <figure> with a <figcaption>. The photo sits inside a <button>
+             so keyboard users can open it too. loading="lazy" waits to download
+             photos until you scroll near them.
+             https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure
+             https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading -->
         <div class="gallery">
           <figure class="panel photo span-7">
             <button type="button" aria-label="Enlarge photo: Foggy mornings">
@@ -130,6 +152,9 @@
     </section>
   </main>
 
+  <!-- Lightbox overlay: hidden until a photo is clicked (script.js adds the .open class).
+       role="dialog" + aria-modal tell screen readers it's a pop-up.
+       https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
     <button class="btn btn-ghost close" type="button">Close</button>
     <div>
@@ -149,6 +174,8 @@
     </div>
   </footer>
 
+  <!-- Loaded at the end of <body> so the HTML exists before the script looks for it.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script -->
   <script src="script.js"></script>
 </body>
 

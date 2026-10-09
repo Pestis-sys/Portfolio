@@ -1,13 +1,23 @@
 <!doctype html>
+<!-- HTML reference: https://developer.mozilla.org/en-US/docs/Web/HTML -->
+<!-- lang="en" tells browsers and screen readers the page language.
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang -->
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <!-- Makes the page fit phone screens instead of showing a zoomed-out desktop page.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A Little Extra | Michael Jeffery Sych</title>
+  <!-- The description is the text Google shows under the page title in search results.
+       https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML -->
   <meta name="description" content="More about Michael Jeffery Sych: two decades in kitchens, photography, and making things.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Google Fonts: preconnect opens the connection early so fonts load faster.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preconnect
+       Fonts: Chakra Petch (headings), IBM Plex Sans (body), IBM Plex Mono (terminal) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,6 +25,8 @@
 </head>
 
 <body>
+  <!-- Skip link: hidden until a keyboard user presses Tab, then jumps past the menu.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#skip_links -->
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -23,6 +35,11 @@
         <img src="img/ms_tech_cyberpunk_1000.png" alt="" width="38" height="38">
         Michael Sych
       </a>
+      <!-- <nav> marks the main navigation for screen readers.
+           The Menu button only shows on phones; script.js opens/closes the list
+           and updates aria-expanded.
+           https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+           https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-expanded -->
       <nav aria-label="Primary">
         <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
         <ul class="nav-links" id="navLinks">
@@ -81,6 +98,8 @@
     <section class="section section-tight">
       <div class="container">
         <h2 class="section-title">From the line to the code</h2>
+        <!-- <ol> (ordered list) because the timeline is a real sequence.
+             https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol -->
         <ol class="timeline">
           <li>
             <span class="step">01</span>
@@ -120,6 +139,9 @@
           </div>
           <p class="pull">Whether I’m designing a layout or fine-tuning a print, I still think like a chef.</p>
         </div>
+        <!-- Each meaning stores both versions in data-kitchen="…" and data-code="…".
+             The Kitchen/Code switch swaps them (script.js "Kitchen to code translator").
+             https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes -->
         <ul class="panel glossary" id="glossary" aria-live="polite">
             <li>
               <span class="term">Mise en place</span>
@@ -196,6 +218,8 @@
     </div>
   </footer>
 
+  <!-- Loaded at the end of <body> so the HTML exists before the script looks for it.
+       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script -->
   <script src="script.js"></script>
 </body>
 
